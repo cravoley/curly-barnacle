@@ -18,15 +18,31 @@ function completeRegistration() {
                     frameModule.topmost().navigate("views/login/login");
                 });
         }).catch(function(error) {
-            console.log(error);
+            console.log("Catch");
+            console.dir(error);
+            var msg = "Unfortunately we were unable to create your account.";
+            // if(error._bodyText.message) msg = error._bodyText.message;
+            // console.log(msg);
             dialogsModule
                 .alert({
-                    message: "Unfortunately we were unable to create your account.",
+                    message: msg,
                     okButtonText: "OK"
                 });
         });
 }
 
 exports.register = function() {
-    completeRegistration();
+    if (user.isValidEmail()) {
+        completeRegistration();
+    } else {
+        dialogsModule.alert({
+            message: "Enter a valid email address.",
+            okButtonText: "OK"
+        });
+    }
 };
+
+
+exports.back = function(){
+    frameModule.topmost().navigate("views/login/login");
+}

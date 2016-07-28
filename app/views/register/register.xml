@@ -6,5 +6,7 @@
         <TextField text="{{ password }}" secure="true" hint="Password" />
 
         <Button text="Sign Up" tap="register" />
+        <Button text="Back" tap="back" />
+
     </StackLayout>
 </Page>
